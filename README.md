@@ -1,4 +1,12 @@
+
+
 Attempt at replicating the surname inference attack via genomics of Gymrek et al. 
+
+WARNING WARNING WARNING
+I am not a biologist, so this might be wrong. Most likely the corrections to the marker values, as there are many standards.
+I did not calibrate against known values, as was done in the first part of the Gymrek paper. Still ongoing, would appreciate corrections.
+WARNING WARNING WARNING
+
 
 Main file: `analyse_str.py` (see doc there)
 
