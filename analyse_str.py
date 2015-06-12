@@ -8,7 +8,7 @@ For this reason, I have decided to include here an archived copy of
 at internet_archive_www_smgf_org_slash_ychromosome_slash_marker_standards.jspx
 
 It gives links to corresponding ysearch (click and fill captcha)
-It also gives entries to put in yhrd.org to perform similar search
+It also gives entries to put in yhrd.org to perform similar search, and a row for the ybase table in the supplementary materials
 
 I was unable to fully replicate the Gymrek et al Surname Inference attack, but one of the databases they used is now shutdown (SMGF)
 The procedure here still works to generate profiles, it is just that they are not accessible publicly in genealogical databases.
@@ -29,7 +29,7 @@ from collections import defaultdict
 
 
 VERBOSE = False
-SELECT_CEU = False     # Only select CEU individuals (Utah)
+SELECT_CEU = True     # Only select CEU individuals (Utah)
 
 ysearch_request_ordering = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 42, 64, 65, 66, 67, 
 68, 69, 70, 71, 49, 72, 73, 51, 74, 75, 76, 77, 78, 79, 80, 43, 44, 45, 46, 47, 48, 50, 52, 53, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
@@ -50,6 +50,8 @@ ysearch_request_final = "&min_markers=8&mismatches_max=0&mismatch_type=sliding&m
 yhrd_yfiler_plus = ["DYS576", "DYS389I", "DYS635", "DYS389II", "DYS627", "DYS460", "DYS458", "DYS19", "GATA-H4", "DYS448", "DYS391", "DYS456", "DYS390", "DYS438", "DYS392", "DYS518", "DYS570", "DYS437", "DYS385a/b", "DYS449", "DYS393", "DYS439", "DYS481", "DYF38751", "DYS533"]
 yhrd_minimal = ["DYS19", "DYS389I", "DYS389II", "DYS390", "DYS391", "DYS392", "DYS393", "DYS385a/b"] 
 # two different ways to perform a search on yhrd
+
+ybase_markers = ["DYS393", "DYS390", "DYS19", "DYS19b", "DYS391", "DYS385a", "DYS385b", "DYS426", "DYS388", "DYS439", "DYS389a", "DYS392", "DYS389b", "DYS458", "DYS459a", "DYS459b", "DYS455", "DYS454", "DYS447", "DYS437", "DYS448", "DYS449", "DYS464a", "DYS464b", "DYS464c", "DYS464d", "DYS464e", "DYS464f", "DYS464g", "DYS460", "GATA-H4", "YCAIIa", "YCAIIb", "DYS456", "DYS607", "DYS576", "DYS570", "CDYa", "CDYb", "DYS442", "DYS438", "DYS425", "DYS461", "DYS462", "GATA-A10", "DYS635", "DYS1B07", "DYS441", "DYS444", "DYS445", "DYS446", "DYS452", "DYS463", "DYS531", "DYS578", "DYS395S1a", "DYS395S1b", "DYS590", "DYS537", "DYS641", "DYS472", "DYS406S1", "DYS511", "DYS413a", "DYS413b", "DYS557", "DYS594", "DYS436", "DYS490", "DYS534", "DYS450", "DYS481", "DYS520", "DYS617", "DYS568", "DYS487", "DYS572", "DYS640", "DYS492", "DYS565", "DYS434", "DYS435", "DYS485", "DYS494", "DYS495", "DYS505", "DYS522", "DYS533", "DYS549", "DYS556", "DYS575", "DYS589", "DYS636", "DYS638", "DYS643", "DYS714", "DYS716", "DYS717", "DYS726", "DYS156-Y"]
 
 filename = sys.argv[1]
 
@@ -171,7 +173,10 @@ def ysearch_request(markers_dict):
     return ysearch_request_initial + ysearch_request_middle + ysearch_request_final
 
     
-
+def ybase(volunteer, markers_dict):
+    return volunteer + "|  "+"|".join([ marker                               for marker in ybase_markers]) , \
+           volunteer + "|  "+"|".join([ str(markers_dict.get(marker, " ? ")) for marker in ybase_markers])
+    
 for volunteer, markers in marked_volunteers:
     markers_dict = dict(markers)
     if SELECT_CEU and not "NA" in volunteer or not int(volunteer[2:4]) <= 13:
@@ -195,9 +200,15 @@ for volunteer, markers in marked_volunteers:
     print "-"*80
     print "UNCORRECTED yhrd values (not sure needs to be corrected!), includes unreliable markers according to Gymrek"
     print_YHRD(markers_dict)    
+    print "-"*80
+    print "-"*80
+    print "Ybase string"
+    a, b = ybase(volunteer, markers_dict)
+    print a
+    print b
+    print "-"*80
+    print "-"*80
 
-    print "-"*80
-    print "-"*80
     FamilyTreeDNA_correct(markers_dict)
     print "SHIFTED yhrd values (not sure needs to be shifted!), includes unreliable markers according to Gymrek"
     print_YHRD(markers_dict)    
@@ -209,7 +220,6 @@ for volunteer, markers in marked_volunteers:
     print "-"*80
     print ysearch_request(markers_dict)
 
-    print 
     print "-"*80
     print "Final marker list"
     for marker in sorted(markers_dict.items()):
