@@ -4,7 +4,7 @@ Main file: `analyse_str.py` (see doc there)
 
 
 File `internet_archive_www_smgf_org_slash_ychromosome_slash_marker_standards.jspx` 
-is an Internet Archive scrape of old website listing correspondance between genealogical and NIST Y-STR markers
+is an Internet Archive scrape of old website listing correspondance between genealogical and NIST Y-STR markers, located here: `https://web.archive.org/web/20130518082814/http://www.smgf.org/ychromosome/marker_standards.jspx`
 
 
 `Science_Gymrek_et_al/` contains Science original paper and supplementary material
