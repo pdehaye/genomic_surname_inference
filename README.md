@@ -1,5 +1,5 @@
 Replication of "Identifying Personal Genomes by Surname Inference"
-------------------------------------------------------------------
+==================================================================
 
         Identifying Personal Genomes by Surname Inference
         Melissa Gymrek, Amy L. McGuire, David Golan, Eran Halperin, Yaniv Erlich
@@ -7,7 +7,8 @@ Replication of "Identifying Personal Genomes by Surname Inference"
         Vol. 339 no. 6117 pp. 321-324 
         DOI: 10.1126/science.1229566
 
-**How much does your genome say about you?**
+How much does your genome say about you?
+----------------------------------------
 
 If you are male, your Y chromosome together with genealogical databases pretty much gives out your last name. This is an attempt at implementing the original attack of Gymrek et al. (or rather reuse the output of their software lobSTR). 
 
@@ -18,7 +19,8 @@ This is an effort to teach myself some computational biology and associated data
 *WARNING WARNING WARNING*
 
 
-**Content**
+Content of this repository
+--------------------------
 
 Main file: `analyse_str.py` (see doc there)
 
