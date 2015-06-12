@@ -1,15 +1,23 @@
+Replication of "Identifying Personal Genomes by Surname Inference"
+------------------------------------------------------------------
 
+        Identifying Personal Genomes by Surname Inference
+        Melissa Gymrek, Amy L. McGuire, David Golan, Eran Halperin, Yaniv Erlich
+        Science 18 January 2013: 
+        Vol. 339 no. 6117 pp. 321-324 
+        DOI: 10.1126/science.1229566
 
-Attempt at replicating the surname inference attack via genomics of Gymrek et al. 
+**How much does your genome say about you?**
 
-WARNING WARNING WARNING
-I am not a biologist, so this might be wrong. Most likely the corrections to the marker values, as there are many standards.
-I did not calibrate against known values, as was done in the first part of the Gymrek paper. Still ongoing, would appreciate corrections.
-WARNING WARNING WARNING
+If you are male, your Y chromosome together with genealogical databases pretty much gives out your last name. This is an attempt at implementing the original attack of Gymrek et al. (or rather reuse the output of their software lobSTR). 
 
+*WARNING WARNING WARNING*
+
+This is an effort to teach myself some computational biology and associated data wrangling. I am neither a biologist nor a computational biologist. I know some of the markers are off, and have not gone through the complete validation tests described in the original paper. Any comment/correction/suggestion welcomed.
+
+*WARNING WARNING WARNING*
 
 Main file: `analyse_str.py` (see doc there)
-
 
 File `internet_archive_www_smgf_org_slash_ychromosome_slash_marker_standards.jspx` 
 is an Internet Archive scrape of old website listing correspondance between genealogical and NIST Y-STR markers, located [here](https://web.archive.org/web/20130518082814/http://www.smgf.org/ychromosome/marker_standards.jspx)
