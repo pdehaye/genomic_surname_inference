@@ -10,7 +10,7 @@ Replication of "Identifying Personal Genomes by Surname Inference"
 How much does your genome say about you?
 ----------------------------------------
 
-If you are male, your Y chromosome together with genealogical databases pretty much gives out your last name. This is an attempt at implementing the original attack of Gymrek et al. (or rather reuse the output of their software lobSTR). 
+For a significant percentage of the male population, your Y chromosome together with genealogical databases pretty much give out your **last name**. This is an attempt at implementing the original attack of Gymrek et al. (or rather reuse the output of their software lobSTR). 
 
 *WARNING WARNING WARNING*
 
