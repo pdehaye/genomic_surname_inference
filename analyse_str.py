@@ -154,7 +154,7 @@ def ysearch_request(markers_dict):
     
 def ybase(volunteer, markers_dict):
     return volunteer + "|  "+"|".join([ marker                               for marker in ybase_markers]) , \
-           volunteer + "|  "+"|".join([ str(markers_dict.get(marker, " ? ")) for marker in ybase_markers])
+           volunteer + "|  "+"|".join([ str(markers_dict.get(marker, "?")) for marker in ybase_markers])
     
 for volunteer, markers in marked_volunteers:
     markers_dict = dict(markers)
@@ -204,6 +204,13 @@ for volunteer, markers in marked_volunteers:
     for marker in sorted(markers_dict.items()):
         print "        ", marker
     print
-    
+
+print 
+
+print "-"*80
+print "Table for CEU individuals, as presented in 'Inferential Genotyping of Y Chromosomes in Latter-Day Saints Founders and Comparison to Utah Samples in the HapMap Project' paper"
+
+marked_volunteers_dict = dict(marked_volunteers)
 for volunteer in lds_volunteers:
-    print volunteer, "     ", "|".join(markers_dict.get(marker, "?") for marker in lds_markers)
+    markers = dict(marked_volunteers_dict.get(volunteer, dict()))
+    print volunteer, "     ", "|".join(str(markers.get(marker, "?")) for marker in lds_markers)
