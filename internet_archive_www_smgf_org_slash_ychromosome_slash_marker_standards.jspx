@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+<script type="text/javascript" src="/static/js/analytics.js"></script>
+<script type="text/javascript">archive_analytics.values.server_name="wwwb-app13.us.archive.org";archive_analytics.values.server_ms=307;</script>
+<link type="text/css" rel="stylesheet" href="/static/css/banner-styles.css"/>
+
+<title>SMGF: Marker Standards</title><link type="text/css" rel="stylesheet" href="/web/20150418134725cs_/http://www.smgf.org/styles/menu.css"/><link type="text/css" rel="stylesheet" href="/web/20150418134725cs_/http://www.smgf.org/styles/textstyle.css"/><link type="text/css" rel="stylesheet" href="/web/20150418134725cs_/http://www.smgf.org/styles/tooltip.css"/><link type="text/css" rel="stylesheet" href="/web/20150418134725cs_/http://www.smgf.org/styles/leftnav.css"/>
+    <!--[if IE]>
+        <link href="/styles/iefix.css" rel="stylesheet" type="text/css"/>
+    <![endif]-->
+    <style type="text/css"><!--/*--><![CDATA[/*]]><!--*/
+        img {display: block;}
+        
+        .inline {display: inline;}
+    /*]]>*/--></style><script src="/web/20150418134725js_/http://www.smgf.org/scripts/jquery-1.7.2.min.js" type="text/javascript">;</script><script src="/web/20150418134725js_/http://www.smgf.org/scripts/jquery.common.js" type="text/javascript">;</script><script src="/web/20150418134725js_/http://www.smgf.org/scripts/events.js" type="text/javascript">;</script><script src="/web/20150418134725js_/http://www.smgf.org/scripts/scripts.js" type="text/javascript">;</script><script src="/web/20150418134725js_/http://www.smgf.org/scripts/tooltips.js" type="text/javascript">;</script><script src="/web/20150418134725js_/http://www.smgf.org/scripts/ypSlideOutMenus.js" type="text/javascript">;</script>
+    <!--[if IE]>
+        <script type="text/javascript">var ctx = "";</script>
+        <script type="text/javascript" src="/scripts/iefix.js">;</script>
+    <![endif]-->
+    <link type="image/ico" href="/web/20150418134725im_/http://www.smgf.org/images/favicon.ico" rel="shortcut icon"/><link type="image/png" href="/images/favicon.png" rel="icon"/></head><body style="margin: 0px;">
+
+
+<!-- BEGIN WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript" src="/static/js/disclaim-element.js" ></script>
+<script type="text/javascript" src="/static/js/graph-calc.js" ></script>
+<script type="text/javascript" src="/static/jflot/jquery.min.js" ></script>
+<script type="text/javascript">//<![CDATA[
+var __wm = (function(){
+var wbPrefix = "/web/";
+var wbCurrentUrl = "http://www.smgf.org/ychromosome/marker_standards.jspx";
+
+var firstYear = 1996;
+var imgWidth = 500,imgHeight = 27;
+var yearImgWidth = 25,monthImgWidth = 2;
+var displayDay = "18";
+var displayMonth = "Apr";
+var displayYear = "2015";
+var prettyMonths = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+var $D=document,$=function(n){return document.getElementById(n)};
+var trackerVal,curYear = -1,curMonth = -1;
+var yearTracker,monthTracker;
+function showTrackers(val) {
+  if (val===trackerVal) return;
+  var $ipp=$("wm-ipp");
+  var $y=$("displayYearEl"),$m=$("displayMonthEl"),$d=$("displayDayEl");
+  if (val) {
+    $ipp.className="hi";
+  } else {
+    $ipp.className="";
+    $y.innerHTML=displayYear;$m.innerHTML=displayMonth;$d.innerHTML=displayDay;
+  }
+  yearTracker.style.display=val?"inline":"none";
+  monthTracker.style.display=val?"inline":"none";
+  trackerVal = val;
+}
+function getElementX2(obj) {
+  var $e=jQuery(obj);
+  return (typeof $e=="undefined"||typeof $e.offset=="undefined")?
+    getElementX(obj):Math.round($e.offset().left);
+}
+function trackMouseMove(event,element) {
+  var eventX = getEventX(event);
+  var elementX = getElementX2(element);
+  var xOff = Math.min(Math.max(0, eventX - elementX),imgWidth);
+  var monthOff = xOff % yearImgWidth;
+
+  var year = Math.floor(xOff / yearImgWidth);
+  var monthOfYear = Math.min(11,Math.floor(monthOff / monthImgWidth));
+  // 1 extra border pixel at the left edge of the year:
+  var month = (year * 12) + monthOfYear;
+  var day = monthOff % 2==1?15:1;
+  var dateString = zeroPad(year + firstYear) + zeroPad(monthOfYear+1,2) +
+    zeroPad(day,2) + "000000";
+
+  $("displayYearEl").innerHTML=year+firstYear;
+  $("displayMonthEl").innerHTML=prettyMonths[monthOfYear];
+  // looks too jarring when it changes..
+  //$("displayDayEl").innerHTML=zeroPad(day,2);
+  var url = wbPrefix + dateString + '/' +  wbCurrentUrl;
+  $("wm-graph-anchor").href=url;
+
+  if(curYear != year) {
+    var yrOff = year * yearImgWidth;
+    yearTracker.style.left = yrOff + "px";
+    curYear = year;
+  }
+  if(curMonth != month) {
+    var mtOff = year + (month * monthImgWidth) + 1;
+    monthTracker.style.left = mtOff + "px";
+    curMonth = month;
+  }
+}
+function hideToolbar() {
+  $("wm-ipp").style.display="none";
+}
+function bootstrap() {
+  var $spk=$("wm-ipp-sparkline");
+  yearTracker=$D.createElement('div');
+  yearTracker.className='yt';
+  with(yearTracker.style){
+    display='none';width=yearImgWidth+"px";height=imgHeight+"px";
+  }
+  monthTracker=$D.createElement('div');
+  monthTracker.className='mt';
+  with(monthTracker.style){
+    display='none';width=monthImgWidth+"px";height=imgHeight+"px";
+  }
+  $spk.appendChild(yearTracker);
+  $spk.appendChild(monthTracker);
+
+  var $ipp=$("wm-ipp");
+  $ipp&&disclaimElement($ipp);
+}
+return{st:showTrackers,mv:trackMouseMove,h:hideToolbar,bt:bootstrap};
+})();//]]>
+</script>
+<style type="text/css">
+body {
+  margin-top:0 !important;
+  padding-top:0 !important;
+  min-width:800px !important;
+}
+</style>
+<div id="wm-ipp" lang="en" style="display:none;">
+
+<div style="position:fixed;left:0;top:0;width:100%!important">
+<div id="wm-ipp-inside">
+   <table style="width:100%;"><tbody><tr>
+   <td id="wm-logo">
+       <a href="/web/" title="Wayback Machine home page"><img src="/static/images/toolbar/wayback-toolbar-logo.png" alt="Wayback Machine" width="110" height="39" border="0" /></a>
+   </td>
+   <td class="c">
+       <table style="margin:0 auto;"><tbody><tr>
+       <td class="u" colspan="2">
+       <form target="_top" method="get" action="/web/form-submit.jsp" name="wmtb" id="wmtb"><input type="text" name="url" id="wmtbURL" value="http://www.smgf.org/ychromosome/marker_standards.jspx" style="width:400px;" onfocus="this.focus();this.select();" /><input type="hidden" name="type" value="replay" /><input type="hidden" name="date" value="20150418134725" /><input type="submit" value="Go" /><span id="wm_tb_options" style="display:block;"></span></form>
+       </td>
+       <td class="n" rowspan="2">
+           <table><tbody>
+           <!-- NEXT/PREV MONTH NAV AND MONTH INDICATOR -->
+           <tr class="m">
+           	<td class="b" nowrap="nowrap">
+		
+		    <a href="/web/20140917145742/http://www.smgf.org/ychromosome/marker_standards.jspx" title="17 Sep 2014">SEP</a>
+		
+		</td>
+		<td class="c" id="displayMonthEl" title="You are here: 13:47:25 Apr 18, 2015">APR</td>
+		<td class="f" nowrap="nowrap">
+		
+		    May
+		
+                </td>
+	    </tr>
+           <!-- NEXT/PREV CAPTURE NAV AND DAY OF MONTH INDICATOR -->
+           <tr class="d">
+               <td class="b" nowrap="nowrap">
+               
+                   <a href="/web/20150414015444/http://www.smgf.org/ychromosome/marker_standards.jspx" title="1:54:44 Apr 14, 2015"><img src="/static/images/toolbar/wm_tb_prv_on.png" alt="Previous capture" width="14" height="16" border="0" /></a>
+               
+               </td>
+               <td class="c" id="displayDayEl" style="width:34px;font-size:24px;" title="You are here: 13:47:25 Apr 18, 2015">18</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   <img src="/static/images/toolbar/wm_tb_nxt_off.png" alt="Next capture" width="14" height="16" border="0"/>
+               
+	       </td>
+           </tr>
+           <!-- NEXT/PREV YEAR NAV AND YEAR INDICATOR -->
+           <tr class="y">
+	       <td class="b" nowrap="nowrap">
+               
+                   <a href="/web/20140223134323/http://www.smgf.org/ychromosome/marker_standards.jspx" title="23 Feb 2014"><strong>2014</strong></a>
+               
+               </td>
+               <td class="c" id="displayYearEl" title="You are here: 13:47:25 Apr 18, 2015">2015</td>
+	       <td class="f" nowrap="nowrap">
+               
+                   2016
+               
+	       </td>
+           </tr>
+           </tbody></table>
+       </td>
+       </tr>
+       <tr>
+       <td class="s">
+           <a class="t" href="/web/20150418134725*/http://www.smgf.org/ychromosome/marker_standards.jspx" title="See a list of every capture for this URL">45 captures</a>
+           <div class="r" title="Timespan for captures of this URL">6 Feb 07 - 18 Apr 15</div>
+       </td>
+       <td class="k">
+       <a href="" id="wm-graph-anchor">
+       <div id="wm-ipp-sparkline" title="Explore captures for this URL">
+	 <img id="sparklineImgId" alt="sparklines"
+		 onmouseover="__wm.st(1)" onmouseout="__wm.st(0)"
+		 onmousemove="__wm.mv(event,this)"
+		 width="500"
+		 height="27"
+		 border="0"
+		 src="/web/jsp/graph.jsp?graphdata=500_27_1996:-1:000000000000_1997:-1:000000000000_1998:-1:000000000000_1999:-1:000000000000_2000:-1:000000000000_2001:-1:000000000000_2002:-1:000000000000_2003:-1:000000000000_2004:-1:000000000000_2005:-1:000000000000_2006:-1:000000000000_2007:-1:010011120102_2008:-1:111111001011_2009:-1:220100000000_2010:-1:110000000000_2011:-1:000000111001_2012:-1:031001100111_2013:-1:100010000000_2014:-1:020000001000_2015:3:000200000000" />
+       </div>
+       </a>
+       </td>
+       </tr></tbody></table>
+   </td>
+   <td class="r">
+       <a href="#close" onclick="__wm.h();return false;" style="background-image:url(/static/images/toolbar/wm_tb_close.png);top:5px;" title="Close the toolbar">Close</a>
+       <a href="http://faq.web.archive.org/" style="background-image:url(/static/images/toolbar/wm_tb_help.png);bottom:5px;" title="Get some help using the Wayback Machine">Help</a>
+   </td>
+   </tr></tbody></table>
+</div>
+</div>
+</div>
+<script type="text/javascript">__wm.bt();</script>
+<!-- END WAYBACK TOOLBAR INSERT -->
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+            window.status = "Loading: SMGF: Marker Standards...";
+        //--><!]]></script><table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td style="width: 50%; background-image: url(/web/20150418134725im_/http://www.smgf.org/images/section_leftright_bg.gif); background-repeat: repeat-x;"/><td valign="top" style="width: 14px; background-color: #e2e1dd;"><img alt="" height="202" width="14" src="/web/20150418134725im_/http://www.smgf.org/images/section_left_curves.gif"/></td><td id="tablepoint" valign="top" style="width: 771px;"><table width="756" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td colspan="3" valign="top" style="width: 771px;"><img alt="" height="30" width="771" src="/web/20150418134725im_/http://www.smgf.org/images/section_top_curves.gif"/></td></tr><tr><td style="width: 10px; background-color: #ffffff;"><img alt="" height="1" width="10" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 751px; background-color: #ffffff;"><script type="text/javascript"><!--//--><![CDATA[//><!--
+        $(function()
+        {
+            $('#search').click(function()
+            {
+                return false;
+            });
+
+            $('div[@id^=menuPos] a').mouseover(function()
+            {
+                var menuPosStr = $(this).parent().attr('id');
+                var regex = /menuPos(.*)/g;
+                if (regex.test(menuPosStr))
+                {
+                    var menuId = menuPosStr.substring(7);
+	                if (typeof(ypSlideOutMenu) != 'undefined')
+	                    ypSlideOutMenu.showMenu('menu'+menuId);
+                }
+            }
+            ).mouseout(function()
+            {
+                var menuPosStr = $(this).parent().attr('id');
+                var regex = /menuPos(.*)/g;
+                if (regex.test(menuPosStr))
+                {
+                    var menuId = menuPosStr.substring(7);
+                    if (typeof(ypSlideOutMenu) != 'undefined')
+                        ypSlideOutMenu.showMenu('menu'+menuId);
+                }
+            });
+
+            
+        });
+    //--><!]]></script><table width="751" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td rowspan="2" style="width: 217px;"><a href="/web/20150418134725/http://www.smgf.org/index.jspx"><img alt="" height="64" width="217" src="/web/20150418134725im_/http://www.smgf.org/images/subpages_logo.gif"/></a></td><td style="width: 534px;" valign="top" align="right"><table class="toptext" cellspacing="0" cellpadding="0" border="0"><tr><td align="center" valign="middle"><a href="/web/20150418134725/http://www.smgf.org/index.jspx">Home</a></td><td align="center" valign="middle"><div style="margin-left: 4px; margin-right: 4px;">|</div></td><td align="center" valign="middle"><a href="/web/20150418134725/http://www.smgf.org/pages/contact.jspx">Contact Us</a></td><td align="center" valign="middle"><div style="margin-left: 4px; margin-right: 4px;">|</div></td><td align="center" valign="middle"><a href="/web/20150418134725/http://www.smgf.org/faqs.jspx">FAQ</a></td><td align="center" valign="middle"><div style="margin-left: 4px; margin-right: 4px;">|</div></td><td align="center" valign="middle"><div id="menuPos99"><a href="/web/20150418134725/http://www.smgf.org/search.jspx" id="search">Search</a></div></td><td align="center" valign="middle"><div style="margin-left: 4px; margin-right: 4px;">|</div></td><td align="center" valign="middle"><a href="/web/20150418134725/https://www.smgf.org/account" id="login">Sign In</a></td></tr><tr><td colspan="9"><div id="headerMenuTop"><img alt="" height="1" width="10" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></div></td></tr></table></td></tr><tr><td valign="bottom" style="width: 534px; height: 100%;" align="right"><table cellspacing="0" cellpadding="0" border="0"><tr><td align="center" valign="middle" class="topmainlinks"><div id="menuPos0" style="margin-right: 4px;"><a href="/web/20150418134725/http://www.smgf.org/pages/overview.jspx">ABOUT SMGF</a></div></td><td align="center" valign="middle" class="topmainlinks">|</td><td align="center" valign="middle" class="topmainlinks"><div id="menuPos1" style="margin-right: 4px; margin-left: 4px;"><a href="/web/20150418134725/http://www.smgf.org/pages/sorensondatabase.jspx">THE DATABASE</a></div></td><td align="center" valign="middle" class="topmainlinks">|</td><td align="center" valign="middle" class="topmainlinks"><div id="menuPos2" style="margin-right: 4px; margin-left: 4px;"><a href="/web/20150418134725/http://www.smgf.org/pages/participate.jspx">WHY PARTICIPATE</a></div></td><td align="center" valign="middle" class="topmainlinks">|</td><td align="center" valign="middle" class="topmainlinks"><div id="menuPos3" style="margin-left: 4px;"><a href="/web/20150418134725/http://www.smgf.org/pages/why_genetic_genealogy.jspx">MOLECULAR GENEALOGY</a></div></td></tr></table></td></tr><tr><td style="width: 751px;" colspan="2"><div id="menuTop"><img alt="" height="5" width="751" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></div></td></tr></tbody></table><table width="751" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td style="width: 182px;"><img alt="" height="87" width="181" src="/web/20150418134725im_/http://www.smgf.org/images/section_portrait_search_database.jpg"/></td><td style="width: 4px;"><img alt="" height="1" width="4" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td valign="bottom" style="width: 540px; background-color: #6C7A7E"><div style="color: #FFFFFF" class="sectiontitle">Marker Standards</div></td><td style="width: 25px; background-color: #6C7A7E;"><img alt="" height="87" width="25" src="/web/20150418134725im_/http://www.smgf.org/images/section_banner_right.gif"/></td></tr><tr><td style="background-color: #ffffff;" colspan="4"><img alt="" height="4" width="751" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></tbody></table><table width="751" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td valign="top" style="width: 182px;"><table border="0" cellspacing="0" cellpadding="0" width="182"><tr><td valign="top" style="width: 182px;"><table cellspacing="0" cellpadding="0" border="0" width="182"><tbody><tr><td style="width: 182px; background-color: #6C7A7E;" class="leftnavtitle" valign="bottom"><span style="color: #FFFFFF;">THE DATABASE</span></td></tr></tbody></table><table cellspacing="0" cellpadding="0" border="0" width="182"><tbody><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/sorensondatabase.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; padding-right: 5px" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/sorensondatabase.jspx">Sorenson Database</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/ydatabase.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; padding-right: 5px" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/ydatabase.jspx">Y-Chromosome Database</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/search.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/search.jspx" style="font-weight: normal;">Search the Y-Database</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/pta_search.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/pta_search.jspx" style="font-weight: normal;">Place/Time Analysis</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/maps/y_history.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/maps/y_history.jspx" style="font-weight: normal;">Lineage Map</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/surnames.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/surnames.jspx" style="font-weight: normal;">Paternal Surnames</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/demographics.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/demographics.jspx" style="font-weight: normal;">Demographics</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/database_stats.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/database_stats.jspx" style="font-weight: normal;">Statistics</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/generation_interval.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/generation_interval.jspx" style="font-weight: normal;">Generation Interval</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/marker_details.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/marker_details.jspx" style="font-weight: normal;">Marker Details</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/ychromosome/marker_standards.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_on"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/marker_standards.jspx" style="">Marker Standards</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/duplicated_markers.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/duplicated_markers.jspx" style="font-weight: normal;">Duplicated Markers</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/dys389.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/dys389.jspx" style="font-weight: normal;">Marker DYS389</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/dys464.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 20px; padding-right: 5px;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/dys464.jspx" style="font-weight: normal;">Marker DYS464</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/mtdatabase.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; padding-right: 5px" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/mtdatabase.jspx">Mitochondrial Database</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/maps/collections.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; padding-right: 5px" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/maps/collections.jspx">Sample Collection Map</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/success_stories.jspx'; return false;"><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="30" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; padding-right: 5px" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/success_stories.jspx">Success Stories</a></td></tr><tr><td style="width: 7px; background-color: #6C7A7E;"><img alt="" height="2" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="background-color: #ffffff;"><img alt="" height="2" width="175" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr onclick="location.href='/pages/contact.jspx'; return false;"><td valign="bottom" style="width: 7px; background-color: #6C7A7E;"><img alt="" height="8" width="7" src="/web/20150418134725im_/http://www.smgf.org/images/leftnav_bot_curve_lt.gif"/></td><td style="width: 175px; height: 30px; padding-left: 10px; background-image: url(/web/20150418134725im_/http://www.smgf.org/images/leftnav_bot_curve_rt.gif); background-position: bottom right; background-repeat: no-repeat;" class="leftnav_off"><a href="/web/20150418134725/http://www.smgf.org/pages/contact.jspx">Contact Us</a></td></tr></tbody></table></td></tr></table></td><td style="width: 4px;"><img alt="" height="1" width="4" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td valign="top" style="width: 565px;"><table border="0" cellspacing="0" cellpadding="0" width="565" style="padding-top: 8px; padding-bottom: 10px;"><tbody><tr><td style="width: 10px;"><img alt="" height="1" width="10" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td valign="top" class="maincontent" style="width: 545px;"><p id="topcontent">
+            Commercial testing companies follow different standards when determining marker values. The SMGF 
+            <a href="/web/20150418134725/http://www.smgf.org/ychromosome/search.jspx">Search Page</a> automatically converts marker values when you 
+            select a lab. However, we provide the following chart for comparisons between testing companies 
+            and the NIST standard.  Some testing companies recently adopted the NIST standard.  
+            Contact your testing company to find out if these changes apply to your results.
+        </p><div style="margin: 0px; width: 100%; text-align: center;"><table class="standards_table" style="margin-left: auto; margin-right: auto; text-align: left;" cellpadding="0" cellspacing="0"><thead><tr align="center"><th>Marker</th><th>NIST (ISOGG)</th><th>ISFG</th><th>Ancestry.com</th><th>DNA-Fingerprint</th><th>DNA Heritage</th><th>Family Tree DNA</th><th>Genebase v3.4</th><th>Genographic</th><th>GeneTree</th><th>Oxford Ancestors</th><th>Relative Genetics</th></tr></thead><tbody><tr align="center"><td>DYS385</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS388</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS389I</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td><b>+ 3</b></td><td>=</td></tr><tr align="center"><td>DYS389II</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td><td>**</td></tr><tr align="center"><td>DYS390</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS391</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS392</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS393</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS394/19</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS426</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS437</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS438</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS439</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td></tr><tr align="center"><td>DYS441</td><td>=</td><td>=</td><td>=</td><td><b>+ 1</b></td><td>=</td><td><b>+ 1</b></td><td>=</td><td>?</td><td>=</td><td>?</td><td><b>+ 1</b></td></tr><tr align="center"><td>DYS442</td><td>=</td><td>=</td><td>=</td><td><b>+ 5</b></td><td>=</td><td><b>+ 5</b></td><td><b>+ 5</b></td><td>?</td><td>=</td><td>?</td><td><b>+ 5</b></td></tr><tr align="center"><td>DYS444</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS445</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS446</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS447</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS448</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS449</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS452</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td><b>+ 19</b></td></tr><tr align="center"><td>DYS454</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS455</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS456</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS458</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS459</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS460</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS461</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS462</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>DYS463</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>?</td><td>=</td><td>?</td><td><b>+ 2</b></td></tr><tr align="center"><td>DYS464</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>GGAAT1B07</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>YCAII</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>YGATAA10</td><td>=</td><td>=</td><td>=</td><td><b>+ 2</b></td><td>=</td><td><b>+ 2</b></td><td><b>+ 2</b></td><td>?</td><td>=</td><td>?</td><td><b>+ 2</b></td></tr><tr align="center"><td>YGATAC4</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr><tr align="center"><td>GATA H4.1</td><td>=</td><td><b>- 9</b></td><td>=</td><td>=</td><td>=</td><td><b>+ 1</b></td><td>=</td><td>?</td><td>=</td><td>?</td><td>=</td></tr></tbody></table></div><p><b>Example:</b> If your Genebase DNA test results show DYS442=12, then you would add five to get the NIST equivalent (DYS442=17).
+        </p><div><table><tr><td>**</td><td>Please see the <a href="/web/20150418134725/http://www.smgf.org/pages/dys389.jspx">DYS389 page</a> for more details about this marker.</td></tr><tr><td>?</td><td>Conversion is unknown.</td></tr><tr><td>=</td><td>No conversion necessary.</td></tr></table></div><p><b>Note:</b> Differences in standards are due to different methods of counting STR values.
+        </p><p><b>NIST Standard:</b> Butler J.M., M.C. Kline, A.E. Decker. 2008. Addressing Y-chromosome short tandem repeat (Y-STR) allele nomenclature.  J Genetic Geneal. 4:125-148.
+        </p></td><td style="width: 10px;"><img alt="" height="1" width="10" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></tbody></table></td></tr></tbody></table></td><td style="width: 10px; background-color: #ffffff;"><img alt="" height="1" width="10" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td colspan="3" valign="top" style="width: 771px;"><img alt="" height="13" width="771" src="/web/20150418134725im_/http://www.smgf.org/images/section_bottom_curves.gif"/></td></tr></tbody></table></td><td valign="top" style="width: 14px; background-color: #e2e1dd;"><img alt="" height="202" width="14" src="/web/20150418134725im_/http://www.smgf.org/images/section_right_curves.gif"/></td><td style="width: 50%; background-image: url(/web/20150418134725im_/http://www.smgf.org/images/section_leftright_bg.gif); background-repeat: repeat-x;"/></tr><tr><td style="width: 50%; padding-top: 5px; padding-bottom: 35px; background-color: #e2e1dd;"/><td style="width: 14px; padding-top: 5px; padding-bottom: 35px; background-color: #e2e1dd;"><img alt="" height="1" width="14" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td valign="top" style="width: 771px; padding-top: 5px; padding-bottom: 35px;"><table class="toptext" cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td align="left" valign="top" style="width: 60%"><table style="margin-left: 10px;" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td style="padding-right: 15px;"><a href="/web/20150418134725/http://www.smgf.org/sitemap.jspx">Site Map</a></td><td style="padding-right: 15px;"><a href="/web/20150418134725/http://www.smgf.org/terms.jspx">Conditions of Use</a></td><td style="padding-right: 15px;"><a href="/web/20150418134725/http://www.smgf.org/privacy.jspx">Privacy Policy</a></td><td style="padding-right: 15px;">Copyright &copy; 2015 SMGF</td></tr></tbody></table></td><td align="right" valign="top" style="width: 40%"><div style="margin-right: 10px;">Validated <a rel="external" href="/web/20150418134725/http://validator.w3.org/check?uri=referer" class="footer">XHTML</a> and <a rel="external" href="/web/20150418134725/http://jigsaw.w3.org/css-validator/check/referer" class="footer">CSS</a></div></td></tr></tbody></table></td><td style="width: 14px; padding-top: 5px; padding-bottom: 35px; background-color: #e2e1dd;"><img alt="" height="1" width="14" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td><td style="width: 50%; padding-top: 5px; padding-bottom: 35px; background-color: #e2e1dd;"/></tr></tbody></table><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu0Container"><div style="background-color: #f1f0ee;" id="menu0Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/overview.jspx">About Us</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/press.jspx">Press Releases</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/news.jspx">In The News</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/publications.jspx">Publications</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/newsletters.jspx">Newsletters</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/faqs.jspx">FAQ</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu0_right"/></td></tr><tr><td colspan="2"><div id="menu0_bottom"/></td></tr></tbody></table><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu1Container"><div style="background-color: #f1f0ee;" id="menu1Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/sorensondatabase.jspx">Sorenson Database</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/ydatabase.jspx">Y-Chromosome Database</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/mtdatabase.jspx">Mitochondrial Database</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/maps/collections.jspx">Sample Collection Map</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/success_stories.jspx">Success Stories</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu1_right"/></td></tr><tr><td colspan="2"><div id="menu1_bottom"/></td></tr></tbody></table><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu2Container"><div style="background-color: #f1f0ee;" id="menu2Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/participate.jspx">Why Participate?</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/pedigree.jspx">Pedigree Chart</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/consent.jspx">Consent Form</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu2_right"/></td></tr><tr><td colspan="2"><div id="menu2_bottom"/></td></tr></tbody></table><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu3Container"><div style="background-color: #f1f0ee;" id="menu3Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/why_genetic_genealogy.jspx">Why Molecular Genealogy?</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/how_it_works.jspx">Understanding DNA</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/ychromosome.jspx">Y-Chromosome DNA</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/mitochondrial.jspx">Mitochondrial DNA</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/animations.jspx">Animations</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/genealogy.jspx">What is Genealogy?</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/together.jspx">Putting it All Together</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/glossary.jspx">Glossary</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/pages/links.jspx">Links</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu3_right"/></td></tr><tr><td colspan="2"><div id="menu3_bottom"/></td></tr></tbody></table><form method="get" action="/web/20150418134725/http://www.smgf.org/search.jspx"><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu99Container"><div style="background-color: #f1f0ee;" id="menu99Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/ychromosome/search.jspx">Y-Database</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/mtdna/search.jspx">mtDatabase</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px;" class="dropmenu"><table cellpadding="0" cellspacing="0" border="0"><tr><td class="dropmenu">Site:</td><td style="padding-left: 3px;"><input size="10" type="text" name="q" id="q" style="border: 1px solid #BCCDF0;"/></td></tr></table></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu99_right"/></td></tr><tr><td colspan="2"><div id="menu99_bottom"/></td></tr></tbody></table></form><form action=""><table style="visibility: hidden; margin-left: auto; margin-right: auto;" border="0" cellspacing="0" cellpadding="0"><tbody><tr><td><div id="menu109Container"><div style="background-color: #f1f0ee;" id="menu109Content"><table style="margin-left: 10px; margin-right: 10px;" cellpadding="0" cellspacing="0" border="0"><tr><td><img alt="" height="7" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/account/options.jspx">Options</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr><tr><td style="padding-top: 3px; padding-bottom: 3px; padding-left: 1px; padding-right: 1px; height: 14px;" class="dropmenu"><a href="/web/20150418134725/http://www.smgf.org/account/logout.jspx">Sign Out</a></td></tr><tr><td style="background-color: #b1b8ba;"><img alt="" height="1" width="1" src="/web/20150418134725im_/http://www.smgf.org/images/spacer.gif"/></td></tr></table><div style="margin-top: 3px; border: 1px solid white;"/></div></div></td><td><div id="menu109_right"/></td></tr><tr><td colspan="2"><div id="menu109_bottom"/></td></tr></tbody></table></form><script type="text/javascript"><!--//--><![CDATA[//><!--
+                    function init()
+                    {
+                
+                        var myMenu0 = new ypSlideOutMenu("menu0", "down", 0, 0, getMenuWidth(0), getMenuHeight(0));
+                        myMenu0.onactivate = function() { repositionMenu(myMenu0, 'menuPos' + 0, 'menuTop'); };
+                    
+                        var myMenu1 = new ypSlideOutMenu("menu1", "down", 0, 0, getMenuWidth(1), getMenuHeight(1));
+                        myMenu1.onactivate = function() { repositionMenu(myMenu1, 'menuPos' + 1, 'menuTop'); };
+                    
+                        var myMenu2 = new ypSlideOutMenu("menu2", "down", 0, 0, getMenuWidth(2), getMenuHeight(2));
+                        myMenu2.onactivate = function() { repositionMenu(myMenu2, 'menuPos' + 2, 'menuTop'); };
+                    
+                        var myMenu3 = new ypSlideOutMenu("menu3", "down", 0, 0, getMenuWidth(3), getMenuHeight(3));
+                        myMenu3.onactivate = function() { repositionMenu(myMenu3, 'menuPos' + 3, 'menuTop'); };
+                    
+                    var myMenu99 = new ypSlideOutMenu("menu99", "down", 0, 0, getMenuWidth(99), getMenuHeight(99));
+                    myMenu99.onactivate = function() { repositionMenu(myMenu99, 'menuPos' + 99, 'headerMenuTop'); };
+                    
+                    
+                    var myMenu109 = new ypSlideOutMenu("menu109", "down", 0, 0, getMenuWidth(109), getMenuHeight(109));
+                    myMenu109.onactivate = function() { repositionMenu(myMenu109, 'menuPos' + 109, 'headerMenuTop'); };
+
+                    ypSlideOutMenu.writeCSS();
+                    ypSlideOutMenu.menusLoaded = true;
+
+                
+                    }
+                    $(function() {
+                        init();
+                    });
+                    //addEvent(window, 'load', init, false);
+                    
+                //--><!]]></script><script type="text/javascript"><!--//--><![CDATA[//><!--
+            window.status = "Done";
+        //--><!]]></script><script type="text/javascript" src="/web/20150418134725js_/http://www.google-analytics.com/urchin.js">;</script><script type="text/javascript">
+            _uacct = "UA-1354317-1";
+            urchinTracker();
+        </script></body></html>
+
+
+
+
+<!--
+     FILE ARCHIVED ON 13:47:25 Apr 18, 2015 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 18:59:57 Jun 11, 2015.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
